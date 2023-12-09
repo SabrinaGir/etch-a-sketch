@@ -5,17 +5,22 @@ const body = document.querySelector('body');
 // create etch-a-sketch game area
 const sizeButton = document.createElement('button');
 createSizeButton()
+
 const game = document.createElement('section');
 body.append(game);
 
+let size = 16;
+
+
 runGame();
+
 
 
 
 // function to run the game
 function runGame() {
     
-    createGrid(16)
+    createGrid(size)
     // listen for click anywhere in the game board and call
     game.addEventListener('click', color);
     sizeButton.addEventListener('click', changeGrid)
@@ -30,12 +35,31 @@ function createGrid(size) {
             createDiv();
         }
     }
+   
 }
 
 
 // function to create a div
 function createDiv() {
+
     const div = document.createElement('div');
+    
+    console.log(game.offsetWidth / size);
+    
+    let width = (game.offsetWidth / size); 
+   
+    div.setAttribute('style', 'min-width: '+ width + 'px; ' + 'max-width: '+ width + 'px; ' + 'max-height: '+ width + 'px; ' + 'min-height: '+ width + 'px; ');
+    // div.setAttribute('style', 'max-width: '+ width + 'px');
+
+    // div.setAttribute('style', 'min-width: '+width + 'px');
+    // div.setAttribute('style', 'min-width: '+width + 'px');
+
+
+    // div.style.maxWidth = game.width / size;
+    // div.style.maxHeight = game.height / size;
+    // div.style.minWidth = game. width / size;
+    // div.style.minHeight = game.height / size;
+
     game.append(div);
 }   
 
@@ -56,7 +80,7 @@ function color() {
 // function to reset the grid and change its size
 function changeGrid() {
    game.textContent = '';
-   let size = prompt("Give a number of squares per side for your new grid: ")
+   size = prompt("Give a number of squares per side for your new grid: ")
 
    createGrid(size);
 
