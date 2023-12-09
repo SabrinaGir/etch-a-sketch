@@ -3,6 +3,7 @@ body  {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 10vw;
 }
 
 
@@ -28,4 +29,9 @@ div {
 
 div:hover {
     background-color: red;
+}
+
+button {
+    height: 10vh;
+    width: 10vw;
 }
