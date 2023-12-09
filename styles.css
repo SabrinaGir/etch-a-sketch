@@ -1,5 +1,12 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
 div {
-    width: 160px;
-    height: 160px;
+    flex: 1;
+    min-width: 16px;
+    min-height: 16px;
     border: 1px solid black;
 }
