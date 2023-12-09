@@ -1,12 +1,27 @@
-body {
+body  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+section {
     display: flex;
     flex-wrap: wrap;
+    width: 50vw;
+    height: 50vw;
+    border: 1px solid black;
     
 }
 
 div {
-    flex: 1;
-    min-width: 16px;
-    min-height: 16px;
+    flex-basis: 0;
+    flex: 1 1 0px;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
     border: 1px solid black;
+    flex-shrink: 0;
 }
