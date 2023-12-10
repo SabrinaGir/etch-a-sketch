@@ -6,12 +6,17 @@ body  {
     gap: 10vw;
 }
 
+#buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 
-section {
+#game {
     display: flex;
     flex-wrap: wrap;
-    width: 50vw;
-    height: 50vw;
+    width: 500px;
+    height: 500px;
     border: 1px solid black;
     
 }
@@ -29,10 +34,11 @@ div {
 }
 
 div:hover {
-    background-color: red;
+    background-color: black;
 }
 
 button {
     height: 10vh;
     width: 10vw;
+    cursor: pointer;
 }

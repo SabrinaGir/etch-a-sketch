@@ -1,27 +1,31 @@
 'use strict';
 
 const body = document.querySelector('body');
-let playing = true;
 
 // create etch-a-sketch game area
+const buttons = document.createElement('section');
+buttons.id = 'buttons';
+body.append(buttons)
+
 const sizeButton = document.createElement('button');
-createSizeButton()
+const colorBlack = document.createElement('button');
+const colorRandom = document.createElement('button');
 
 const game = document.createElement('section');
+game.id = 'game';
 body.append(game);
 
 let size = 16;
 
 runGame();
 
-while (playing = true) {
-    updateGrid();
-}
-
-
 // function to run the game
 function runGame() {
     
+    createSizeButton();
+    changeColorBlack();
+    changeColorRandom();
+
     createGrid(size)
     // listen for click anywhere in the game board and call
     game.addEventListener('click', color);
@@ -49,7 +53,6 @@ function createDiv() {
     let width = (game.offsetWidth / size)-1.2; 
    
     // using just width and height did not work, not sure why
-    // so i used max and min instead, not a great solution but it works
     div.setAttribute('style', 'min-width: '+ width + 'px; ' + 'max-width: '+ width + 'px; ' + 'max-height: '+ width + 'px; ' + 'min-height: '+ width + 'px; ');
     game.append(div);
 }   
@@ -57,14 +60,26 @@ function createDiv() {
 // function to create a button to change size of grid
 function createSizeButton() {
     sizeButton.innerText = 'Change Grid Size';
-    body.append(sizeButton);
+    buttons.append(sizeButton);
+}
+
+// function to create a button to change color to black
+function changeColorBlack() {
+    colorBlack.style.backgroundColor = 'black';
+    buttons.append(colorBlack);    
+}
+
+// function to create a button to get random color
+function changeColorRandom() {
+    colorRandom.style.backgroundImage = 'linear-gradient(to right, red , pink, orange, yellow, green, blue);'
+    buttons.append(colorRandom);
 }
 
 // have the divs change color when mouse goes over them
 function color() {
     const divs = document.querySelectorAll('div');
     divs.forEach(div => div.addEventListener('mouseover', () => {
-        div.style.backgroundColor = 'red';
+        div.style.backgroundColor = 'black';
     }))
 }
 
@@ -75,15 +90,4 @@ function changeGrid() {
 
    createGrid(size);
 
-}
-
-// function to update the grid as window size changes 
-function updateGrid() {
-    const divs = document.querySelectorAll('div');
-    
-    divs.forEach(div => {
-        let width = (game.offsetWidth / size)-1.2; 
-        div.setAttribute('style', 'min-width: '+ width + 'px; ' + 'max-width: '+ width + 'px; ' + 'max-height: '+ width + 'px; ' + 'min-height: '+ width + 'px; ');
-    });
-   
 }
