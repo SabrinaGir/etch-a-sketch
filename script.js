@@ -9,6 +9,7 @@ body.append(buttons);
 
 const sizeButton = document.createElement('button');
 const colorBlack = document.createElement('button');
+const colorWhite = document.createElement('button')
 const colorRandom = document.createElement('button');
 
 // create etch-a-sketch game area
@@ -20,6 +21,7 @@ body.append(game);
 let size = 16;
 let color = 'black';
 
+
 runGame();
 
 // function to run the game
@@ -27,6 +29,7 @@ function runGame() {
     
     createSizeButton();
     createBlackButton();
+    createWhiteButton();
     createRandomButton();
 
     createGrid(size)
@@ -35,6 +38,7 @@ function runGame() {
     game.addEventListener('click', colorDiv);
     sizeButton.addEventListener('click', changeGrid);
     colorBlack.addEventListener('click', changeColorBlack);
+    colorWhite.addEventListener('click', changeColorWhite);
     colorRandom.addEventListener('click', changeColorRandom);
 }
 
@@ -53,10 +57,11 @@ function createGrid(size) {
 // function to create a div
 // below 9, the divs overflow
 function createDiv() {
+    let borderSize = 1.2;
 
     const div = document.createElement('div');
     
-    let width = (game.offsetWidth / size)-1.2; 
+    let width = (game.offsetWidth / size)-borderSize; 
    
     // using just width and height did not work, not sure why
     div.setAttribute('style', 'min-width: '+ width + 'px; ' + 'max-width: '+ width + 'px; ' + 'max-height: '+ width + 'px; ' + 'min-height: '+ width + 'px; ');
@@ -73,6 +78,11 @@ function createSizeButton() {
 function createBlackButton() {
     colorBlack.style.backgroundColor = 'black';
     buttons.append(colorBlack);    
+}
+
+function createWhiteButton() {
+    colorWhite.style.backgroundColor = 'white';
+    buttons.append(colorWhite);
 }
 
 // function to create a button to get random color
@@ -92,14 +102,44 @@ function colorDiv() {
 // function to reset the grid and change its size
 function changeGrid() {
    game.textContent = '';
+   let sizeGood = false;
+
    size = prompt("Give a number of squares per side for your new grid: ")
 
-   createGrid(size);
+   while (sizeGood == false) {
 
+        if (size == '') {
+            size = 16;
+            sizeGood = true;
+        }
+        else if (size > 48) {
+            alert('Max size is 48')
+            size = prompt("Give a number of squares per side for your new grid: ")
+        }
+
+        else if (size <= 1) {
+            alert('Size must be over 1')
+            size = prompt("Give a number of squares per side for your new grid: ")
+        } 
+
+        
+
+        else {
+            sizeGood = true;
+        }
+    }
+
+    createGrid(size);
+   
 }
 
 function changeColorBlack() {
     color = 'black';
+    colorDiv();
+}
+
+function changeColorWhite() {
+    color = 'white'
     colorDiv();
 }
 
