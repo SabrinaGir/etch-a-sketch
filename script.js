@@ -2,20 +2,23 @@
 
 const body = document.querySelector('body');
 
-// create etch-a-sketch game area
+// create buttons area and initialize button
 const buttons = document.createElement('section');
 buttons.id = 'buttons';
-body.append(buttons)
+body.append(buttons);
 
 const sizeButton = document.createElement('button');
 const colorBlack = document.createElement('button');
 const colorRandom = document.createElement('button');
 
+// create etch-a-sketch game area
 const game = document.createElement('section');
 game.id = 'game';
 body.append(game);
 
+// initialize variables for size and color
 let size = 16;
+let color = 'black';
 
 runGame();
 
@@ -41,11 +44,11 @@ function createGrid(size) {
             createDiv();
         }
     }
-   
 }
 
 
 // function to create a div
+// below 9, the divs overflow
 function createDiv() {
 
     const div = document.createElement('div');
@@ -71,7 +74,7 @@ function changeColorBlack() {
 
 // function to create a button to get random color
 function changeColorRandom() {
-    colorRandom.style.backgroundImage = 'linear-gradient(to right, red , pink, orange, yellow, green, blue);'
+    colorRandom.style.backgroundImage = 'linear-gradient(to right, red, orange, yellow, green, blue)'
     buttons.append(colorRandom);
 }
 
