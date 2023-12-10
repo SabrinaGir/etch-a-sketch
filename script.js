@@ -8,6 +8,10 @@ buttons.id = 'buttons';
 body.append(buttons);
 
 const sizeButton = document.createElement('button');
+
+const opacityButtonOn = document.createElement('button');
+const opacityButtonOff = document.createElement('button')
+
 const colorBlack = document.createElement('button');
 const colorWhite = document.createElement('button')
 const colorRandom = document.createElement('button');
@@ -28,6 +32,7 @@ runGame();
 function runGame() {
     
     createSizeButton();
+    createOpacityButtons();
     createBlackButton();
     createWhiteButton();
     createRandomButton();
@@ -40,6 +45,9 @@ function runGame() {
     colorBlack.addEventListener('click', changeColorBlack);
     colorWhite.addEventListener('click', changeColorWhite);
     colorRandom.addEventListener('click', changeColorRandom);
+
+    // opacityButtonOn.addEventListener('click', opacityOn);
+    // opacityButtonOff.addEventListener('click', opacityOff);
 }
 
 
@@ -74,6 +82,22 @@ function createSizeButton() {
     buttons.append(sizeButton);
 }
 
+function createOpacityButtons() {
+
+    opacityButtonOn.style.backgroundColor = 'rgba(0,0,0,0.2)';
+    opacityButtonOn.classList.add('opacity')
+    opacityButtonOn.innerText = 'ON';
+
+    opacityButtonOff.style.backgroundColor = 'rgba(0,0,0,0.2)';
+    opacityButtonOff.innerText = 'OFF';
+    opacityButtonOff.classList.add('opacity')
+    opacityButtonOff.style.display = 'none';
+
+
+    buttons.append(opacityButtonOn);    
+    buttons.append(opacityButtonOff);    
+}
+
 // function to create a button to change color to black
 function createBlackButton() {
     colorBlack.style.backgroundColor = 'black';
@@ -106,6 +130,7 @@ function changeGrid() {
 
    size = prompt("Give a number of squares per side for your new grid: ")
 
+   // makes sure that the size is valid
    while (sizeGood == false) {
 
         if (size == '') {
@@ -122,22 +147,22 @@ function changeGrid() {
             size = prompt("Give a number of squares per side for your new grid: ")
         } 
 
-        
-
         else {
             sizeGood = true;
         }
     }
 
     createGrid(size);
-   
 }
 
+
+// function to change the hover color to black
 function changeColorBlack() {
     color = 'black';
     colorDiv();
 }
 
+// function to change the hover color to black
 function changeColorWhite() {
     color = 'white'
     colorDiv();
