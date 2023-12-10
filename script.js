@@ -1,6 +1,7 @@
 'use strict';
 
 const body = document.querySelector('body');
+let playing = true;
 
 // create etch-a-sketch game area
 const sizeButton = document.createElement('button');
@@ -11,10 +12,11 @@ body.append(game);
 
 let size = 16;
 
-
 runGame();
 
-
+while (playing = true) {
+    updateGrid();
+}
 
 
 // function to run the game
@@ -44,22 +46,11 @@ function createDiv() {
 
     const div = document.createElement('div');
     
-    console.log(game.offsetWidth / size);
-    
-    let width = (game.offsetWidth / size); 
+    let width = (game.offsetWidth / size)-1.2; 
    
+    // using just width and height did not work, not sure why
+    // so i used max and min instead, not a great solution but it works
     div.setAttribute('style', 'min-width: '+ width + 'px; ' + 'max-width: '+ width + 'px; ' + 'max-height: '+ width + 'px; ' + 'min-height: '+ width + 'px; ');
-    // div.setAttribute('style', 'max-width: '+ width + 'px');
-
-    // div.setAttribute('style', 'min-width: '+width + 'px');
-    // div.setAttribute('style', 'min-width: '+width + 'px');
-
-
-    // div.style.maxWidth = game.width / size;
-    // div.style.maxHeight = game.height / size;
-    // div.style.minWidth = game. width / size;
-    // div.style.minHeight = game.height / size;
-
     game.append(div);
 }   
 
@@ -84,4 +75,15 @@ function changeGrid() {
 
    createGrid(size);
 
+}
+
+// function to update the grid as window size changes 
+function updateGrid() {
+    const divs = document.querySelectorAll('div');
+    
+    divs.forEach(div => {
+        let width = (game.offsetWidth / size)-1.2; 
+        div.setAttribute('style', 'min-width: '+ width + 'px; ' + 'max-width: '+ width + 'px; ' + 'max-height: '+ width + 'px; ' + 'min-height: '+ width + 'px; ');
+    });
+   
 }
