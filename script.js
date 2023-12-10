@@ -26,13 +26,16 @@ runGame();
 function runGame() {
     
     createSizeButton();
-    changeColorBlack();
-    changeColorRandom();
+    createBlackButton();
+    createRandomButton();
 
     createGrid(size)
-    // listen for click anywhere in the game board and call
-    game.addEventListener('click', color);
-    sizeButton.addEventListener('click', changeGrid)
+    
+    // add all event listeners 
+    game.addEventListener('click', colorDiv);
+    sizeButton.addEventListener('click', changeGrid);
+    colorBlack.addEventListener('click', changeColorBlack);
+    colorRandom.addEventListener('click', changeColorRandom);
 }
 
 
@@ -67,22 +70,22 @@ function createSizeButton() {
 }
 
 // function to create a button to change color to black
-function changeColorBlack() {
+function createBlackButton() {
     colorBlack.style.backgroundColor = 'black';
     buttons.append(colorBlack);    
 }
 
 // function to create a button to get random color
-function changeColorRandom() {
+function createRandomButton() {
     colorRandom.style.backgroundImage = 'linear-gradient(to right, red, orange, yellow, green, blue)'
     buttons.append(colorRandom);
 }
 
 // have the divs change color when mouse goes over them
-function color() {
+function colorDiv() {
     const divs = document.querySelectorAll('div');
     divs.forEach(div => div.addEventListener('mouseover', () => {
-        div.style.backgroundColor = 'black';
+        div.style.backgroundColor = color;
     }))
 }
 
@@ -93,4 +96,18 @@ function changeGrid() {
 
    createGrid(size);
 
+}
+
+function changeColorBlack() {
+    color = 'black';
+    colorDiv();
+}
+
+function changeColorRandom() {
+    let r = Math.floor(Math.random() * 257);
+    let g = Math.floor(Math.random() * 257);
+    let b = Math.floor(Math.random() * 257);
+
+    color = 'rgb('+ r + ','+ g + ',' + b + ')';
+    colorDiv();
 }
