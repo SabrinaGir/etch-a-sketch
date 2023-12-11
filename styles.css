@@ -45,3 +45,7 @@ button {
 .opacity {
     font-weight: bold;
 }
+
+#pt-ext-root {
+    display: none;
+}
