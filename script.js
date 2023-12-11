@@ -126,11 +126,16 @@ function colorDiv() {
     const divs = document.querySelectorAll('div');
     divs.forEach(div => div.addEventListener('mouseover', () => {
 
-        if (opacityIsOn == true && opacity < 1.1) {
-            let div_opacity  =
-            div.style.backgroundColor = 'rgba(' + color + ',' + opacity + ')';
-            // div.style.backgroundColor[3] += 0.1; 
+        let div_opacity  =  Number(div.style.backgroundColor.slice(-4, -1));
+
+        if (opacityIsOn == true && div_opacity < 1.1 && div_opacity >= 0.1) {
+            div_opacity = div_opacity + 0.1;
+            div.style.backgroundColor = 'rgba(' + color + ',' + div_opacity + ')';
+           
+            
+
             console.log(div.style.backgroundColor.slice(-4, -1))
+            console.log(div_opacity);
         } 
         else {
         div.style.backgroundColor = 'rgba(' + color + ',' + opacity + ')';
@@ -210,5 +215,6 @@ function opacityOn() {
 function opacityOff() {
     opacityButtonOff.style.display = 'none'
     opacityButtonOn.style.display = ''
+    opacityIsOn = false;
     opacity = 1;
 }
