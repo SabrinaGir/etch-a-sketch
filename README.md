@@ -12,4 +12,6 @@
 
 - need to get button to change color -- SOLVED
 
+- add opacity feature 
+
 - weird lines appear between certain rows; doesn't seem to affect much though

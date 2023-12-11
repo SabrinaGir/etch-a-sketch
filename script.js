@@ -1,6 +1,7 @@
 'use strict';
 
 const body = document.querySelector('body');
+let opacityIsOn = false;
 
 // create buttons area and initialize button
 const buttons = document.createElement('section');
@@ -23,7 +24,10 @@ body.append(game);
 
 // initialize variables for size and color
 let size = 16;
-let color = 'black';
+let opacity = 1;
+let addedOpacity = 0;
+let color = '0,0,0'
+
 
 
 runGame();
@@ -46,8 +50,8 @@ function runGame() {
     colorWhite.addEventListener('click', changeColorWhite);
     colorRandom.addEventListener('click', changeColorRandom);
 
-    // opacityButtonOn.addEventListener('click', opacityOn);
-    // opacityButtonOff.addEventListener('click', opacityOff);
+    opacityButtonOn.addEventListener('click', opacityOn);
+    opacityButtonOff.addEventListener('click', opacityOff);
 }
 
 
@@ -82,6 +86,7 @@ function createSizeButton() {
     buttons.append(sizeButton);
 }
 
+// function to create a button to turn on and off opacity
 function createOpacityButtons() {
 
     opacityButtonOn.style.backgroundColor = 'rgba(0,0,0,0.2)';
@@ -117,10 +122,22 @@ function createRandomButton() {
 
 // have the divs change color when mouse goes over them
 function colorDiv() {
+
     const divs = document.querySelectorAll('div');
     divs.forEach(div => div.addEventListener('mouseover', () => {
-        div.style.backgroundColor = color;
+
+        if (opacityIsOn == true && opacity < 1.1) {
+            let div_opacity  =
+            div.style.backgroundColor = 'rgba(' + color + ',' + opacity + ')';
+            // div.style.backgroundColor[3] += 0.1; 
+            console.log(div.style.backgroundColor.slice(-4, -1))
+        } 
+        else {
+        div.style.backgroundColor = 'rgba(' + color + ',' + opacity + ')';
+        }
     }))
+
+   
 }
 
 // function to reset the grid and change its size
@@ -158,13 +175,13 @@ function changeGrid() {
 
 // function to change the hover color to black
 function changeColorBlack() {
-    color = 'black';
+    color = '0,0,0';
     colorDiv();
 }
 
 // function to change the hover color to black
 function changeColorWhite() {
-    color = 'white'
+    color = '255,255,255'
     colorDiv();
 }
 
@@ -173,6 +190,25 @@ function changeColorRandom() {
     let g = Math.floor(Math.random() * 257);
     let b = Math.floor(Math.random() * 257);
 
-    color = 'rgb('+ r + ','+ g + ',' + b + ')';
+    color = '' + r + ','+ g + ',' + b;
+
+    console.log(color);
+
     colorDiv();
+}
+
+// opacity
+
+function opacityOn() {
+    opacityButtonOn.style.display = 'none'
+    opacityButtonOff.style.display = ''
+    opacityIsOn = true;
+
+    opacity = 0.1;
+}
+
+function opacityOff() {
+    opacityButtonOff.style.display = 'none'
+    opacityButtonOn.style.display = ''
+    opacity = 1;
 }
