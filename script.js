@@ -105,12 +105,12 @@ function createOpacityButtons() {
 
 // function to create a button to change color to black
 function createBlackButton() {
-    colorBlack.style.backgroundColor = 'black';
+    colorBlack.style.backgroundColor = 'rgb(0,0,0)';
     buttons.append(colorBlack);    
 }
 
 function createWhiteButton() {
-    colorWhite.style.backgroundColor = 'white';
+    colorWhite.style.backgroundColor = 'rgb(255,255,255)';
     buttons.append(colorWhite);
 }
 
@@ -126,16 +126,18 @@ function colorDiv() {
     const divs = document.querySelectorAll('div');
     divs.forEach(div => div.addEventListener('mouseover', () => {
 
+
         let div_opacity  =  Number(div.style.backgroundColor.slice(-4, -1));
+
+        // console.log(div.style.backgroundColor.slice(-4, -1))
+        // console.log(div.style.backgroundColor);
+
 
         if (opacityIsOn == true && div_opacity < 1.1 && div_opacity >= 0.1) {
             div_opacity = div_opacity + 0.1;
             div.style.backgroundColor = 'rgba(' + color + ',' + div_opacity + ')';
            
-            
 
-            console.log(div.style.backgroundColor.slice(-4, -1))
-            console.log(div_opacity);
         } 
         else {
         div.style.backgroundColor = 'rgba(' + color + ',' + opacity + ')';
@@ -215,6 +217,6 @@ function opacityOn() {
 function opacityOff() {
     opacityButtonOff.style.display = 'none'
     opacityButtonOn.style.display = ''
-    opacityIsOn = false;
+    opacityIsOn =
     opacity = 1;
 }
