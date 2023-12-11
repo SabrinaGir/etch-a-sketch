@@ -12,6 +12,7 @@
 
 - need to get button to change color -- SOLVED
 
-- add opacity feature 
+- add opacity feature - DONE
 
-- weird lines appear between certain rows; doesn't seem to affect much though
+- weird lines appear between certain rows; doesn't seem to affect much though - SOLVED
+    - i removed the height of the game area in CSS so that it can choose its own
